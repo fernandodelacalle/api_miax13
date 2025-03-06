@@ -9,6 +9,8 @@ services:
       - 8080:8080
     volumes:
       - ./src:/code
+    environment:
+      - MONGO_CNX=mongodb://root:example@mongo:27017
 
   mongo:
     image: mongo

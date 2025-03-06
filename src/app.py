@@ -1,10 +1,12 @@
+import os
+
 from fastapi import FastAPI
 from pymongo import MongoClient
 
 app = FastAPI()
 
 
-client = MongoClient("mongodb://root:example@mongo:27017")
+client = MongoClient(os.getenv('MONGO_CNX'))
 
 db = client['db_api']
 col = db['nombres']
@@ -12,8 +14,8 @@ col = db['nombres']
 
 @app.get("/names")
 def names():
-    print('call names')
-    return ['fernando', 'jose', 'juan', 'pedro', 'luis', 'maria', 'ana']
+    names_list = col.find({}, {"_id": 0, "name": 1})
+    return [name['name'] for name in names_list]
 
 
 @app.post("/name")
