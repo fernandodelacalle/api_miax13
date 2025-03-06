@@ -22,4 +22,8 @@ docker-compose build
 docker-compose up
 ```
 
-En el navegador: http://localhost:8080/docs
+En el navegador: 
+|servico|url|
+|--|--|
+|API | http://localhost:8080/docs|
+|Mongoexpres | http://localhost:33119/|
